@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Input} from 'native-base';
 import {createStackNavigator} from '@react-navigation/stack';
 import DrawerNavigator from './DrawerNavigator';
@@ -24,10 +24,13 @@ import {
   ConfirmOrderScreen,
   UserPaymentsScreen,
 } from '../screens';
+import {shopsContext} from '../context';
 
 const Stack = createStackNavigator();
 const MainStackNavigator = () => {
   const account = useSelector(state => state.account);
+
+  const {setSearch} = useContext(shopsContext);
   return (
     <Stack.Navigator
       screenOptions={{
@@ -117,6 +120,7 @@ const MainStackNavigator = () => {
           headerTitleContainerStyle: {width: '100%'},
           headerTitle: () => (
             <Input
+              onChangeText={setSearch}
               variant="unstyled"
               style={{direction: 'rtl'}}
               placeholder="جستجو در اسنپ فود"

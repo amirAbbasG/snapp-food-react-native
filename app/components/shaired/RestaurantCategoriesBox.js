@@ -18,7 +18,7 @@ const RestaurantCategoriesBox = () => {
   const renderItem = ({item, index}) => (
     <ImageCard
       onPress={() => handlePressCategory(item)}
-      image={`${item}.jpg`}
+      image={`${item.replace(' ', '-')}.jpg`}
       title={item}
       key={index}
       style={{

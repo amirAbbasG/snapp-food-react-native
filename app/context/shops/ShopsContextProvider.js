@@ -23,6 +23,7 @@ import {getUserOrders} from './../../redux/action/orderActions';
 
 const ShopsContextProvider = ({children}) => {
   const [couponId, setCouponId] = useState();
+  const [search, setSearch] = useState('');
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -31,6 +32,7 @@ const ShopsContextProvider = ({children}) => {
 
   const shopTypes = useSelector(state => state.shopTypes);
   const filteredShops = useSelector(state => state.filteredShops);
+  const shops = useSelector(state => state.shops);
   const shopDetails = useSelector(state => state.shopDetails);
   const account = useSelector(state => state.account);
 
@@ -54,6 +56,11 @@ const ShopsContextProvider = ({children}) => {
       ? s.coupons.length > 0
       : s.coupons.length >= 0,
   );
+
+  const searchShops =
+    search.length > 0
+      ? [...shops].filter(s => s.shopName.includes(search))
+      : [];
 
   //#region handle shop register
   const registerShop = async shop => {
@@ -226,6 +233,8 @@ const ShopsContextProvider = ({children}) => {
         useDiscount,
         couponId,
         useCoupon,
+        searchShops,
+        setSearch,
       }}>
       {children}
     </shopsContext.Provider>

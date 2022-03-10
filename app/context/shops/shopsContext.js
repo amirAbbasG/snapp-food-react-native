@@ -18,6 +18,8 @@ const shopsContext = createContext({
   useDiscount: () => {},
   useCoupon: () => {},
   couponId: 0,
+  searchShops: [],
+  setSearch: () => {},
 });
 
 export default shopsContext;
