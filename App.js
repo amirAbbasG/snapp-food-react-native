@@ -9,9 +9,11 @@ import {
   AccountContextProvider,
   ShopsContextProvider,
 } from './app/context';
-import MainStackNavigator from './app/container/MainStackNavigator';
 import RNBootSplash from 'react-native-bootsplash';
+
+import MainStackNavigator from './app/container/MainStackNavigator';
 import theme from './app/theme';
+import {combineProviders} from './app/utils/combineProviders';
 
 I18nManager.forceRTL(true);
 LogBox.ignoreLogs(['NativeBase:']);
@@ -19,25 +21,21 @@ const App = () => {
   useEffect(() => {
     RNBootSplash.hide({fade: true});
   }, []);
+
+  const Providers = combineProviders([
+    NavigationContainer,
+    GlobalContextProvider,
+    AccountContextProvider,
+    ShopsContextProvider,
+  ]);
+
   return (
     <NativeBaseProvider theme={theme}>
       <StatusBar backgroundColor="#DCDCDC" barStyle={'dark-content'} />
       <Provider store={store}>
-        <NavigationContainer>
-          {/* global states start tags */}
-          <GlobalContextProvider>
-            <AccountContextProvider>
-              <ShopsContextProvider>
-                {/*  */}
-
-                <MainStackNavigator />
-
-                {/* global states end tags */}
-              </ShopsContextProvider>
-            </AccountContextProvider>
-          </GlobalContextProvider>
-          {/* */}
-        </NavigationContainer>
+        <Providers>
+          <MainStackNavigator />
+        </Providers>
       </Provider>
     </NativeBaseProvider>
   );
