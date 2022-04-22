@@ -1,4 +1,4 @@
-import React, {useContext, useState, memo} from 'react';
+import React, {useContext, useState} from 'react';
 import {Linking} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {accountContext, shopsContext, globalContext} from '../';
@@ -241,4 +241,4 @@ const ShopsContextProvider = ({children}) => {
   );
 };
 
-export default memo(ShopsContextProvider);
+export default ShopsContextProvider;
