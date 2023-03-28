@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React from 'react';
 import {globalContext} from '..';
 import {BackHandler, Alert} from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
@@ -86,4 +86,4 @@ const GlobalContextProvider = ({children}) => {
   );
 };
 
-export default memo(GlobalContextProvider);
+export default GlobalContextProvider;

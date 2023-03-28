@@ -1,4 +1,4 @@
-import React, {useState, useContext, memo} from 'react';
+import React, {useState, useContext} from 'react';
 import {Keyboard} from 'react-native';
 import {accountContext, globalContext} from '../';
 import {useDispatch, useSelector} from 'react-redux';
@@ -302,4 +302,4 @@ const AccountContextProvider = ({children}) => {
   );
 };
 
-export default memo(AccountContextProvider);
+export default AccountContextProvider;
